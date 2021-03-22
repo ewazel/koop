@@ -40,7 +40,7 @@ namespace Koop.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=localhost;Database=pp;User ID=SA;Password=Gtm#Dpi7zwt;");
+                optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=koop;User Id=wojtek;Password=wojtek19842041;");
             }
         }
 
@@ -118,7 +118,7 @@ namespace Koop.Models
                     .HasColumnName("order_status_name");
 
                 entity.Property(e => e.OrderStopDate)
-                    .HasColumnType("datetime")
+                    .HasColumnType("timestamp")
                     .HasColumnName("order_stop_date");
 
                 entity.Property(e => e.Price)
@@ -239,11 +239,11 @@ namespace Koop.Models
                 entity.Property(e => e.OrderId).HasColumnName("order_id");
 
                 entity.Property(e => e.OrderStartDate)
-                    .HasColumnType("datetime")
+                    .HasColumnType("timestamp")
                     .HasColumnName("order_start_date");
 
                 entity.Property(e => e.OrderStopDate)
-                    .HasColumnType("datetime")
+                    .HasColumnType("timestamp")
                     .HasColumnName("order_stop_date");
             });
 
@@ -396,7 +396,7 @@ namespace Koop.Models
                 entity.Property(e => e.OproId).HasColumnName("opro_id");
 
                 entity.Property(e => e.OrderClosingDate)
-                    .HasColumnType("datetime")
+                    .HasColumnType("timestamp")
                     .HasColumnName("order_closing_date");
 
                 entity.Property(e => e.Phone)
@@ -451,7 +451,7 @@ namespace Koop.Models
                 entity.Property(e => e.Duration).HasColumnName("duration");
 
                 entity.Property(e => e.WorkDate)
-                    .HasColumnType("datetime")
+                    .HasColumnType("timestamp")
                     .HasColumnName("work_date");
 
                 entity.Property(e => e.WorkTypeId).HasColumnName("work_type_id");
