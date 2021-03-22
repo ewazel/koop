@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Koop.Models
 {
-    public partial class ppContext : DbContext
+    public partial class KoopDbContext : DbContext
     {
-        public ppContext()
+        public KoopDbContext()
         {
         }
 
-        public ppContext(DbContextOptions<ppContext> options)
+        public KoopDbContext(DbContextOptions<KoopDbContext> options)
             : base(options)
         {
         }
