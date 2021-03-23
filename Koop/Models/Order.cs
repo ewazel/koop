@@ -12,7 +12,7 @@ namespace Koop.Models
             OrderedItems = new HashSet<OrderedItem>();
         }
 
-        public long OrderId { get; set; }
+        public Guid OrderId { get; set; }
         public DateTime OrderStartDate { get; set; }
         public DateTime OrderStopDate { get; set; }
 

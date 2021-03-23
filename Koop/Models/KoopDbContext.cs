@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Koop.Models
 {
-    public partial class KoopDbContext : DbContext
+    public partial class KoopDbContext : IdentityDbContext<User, Role, Guid>
     {
         public KoopDbContext()
         {
@@ -21,7 +22,7 @@ namespace Koop.Models
         public virtual DbSet<Basket> Baskets { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<CoopOrderHistoryView> CoopOrderHistoryViews { get; set; }
-        public virtual DbSet<Cooperator> Cooperators { get; set; }
+        //public virtual DbSet<User> Cooperators { get; set; }
         public virtual DbSet<Favority> Favorities { get; set; }
         public virtual DbSet<Function> Functions { get; set; }
         public virtual DbSet<Fund> Funds { get; set; }
@@ -46,6 +47,8 @@ namespace Koop.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
             modelBuilder.Entity<AvailableQuantity>(entity =>
@@ -98,7 +101,7 @@ namespace Koop.Models
 
                 entity.ToView("coop_order_history_view");
 
-                entity.Property(e => e.CoopId).HasColumnName("coop_id");
+                entity.Property(e => e.Id).HasColumnName("coop_id");
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
@@ -128,14 +131,14 @@ namespace Koop.Models
                     .HasColumnName("price");
             });
 
-            modelBuilder.Entity<Cooperator>(entity =>
+            /*modelBuilder.Entity<User>(entity =>
             {
-                entity.HasKey(e => e.CoopId)
+                entity.HasKey(e => e.Id)
                     .HasName("pk_cooperators");
 
                 entity.ToTable("cooperators");
 
-                entity.Property(e => e.CoopId).HasColumnName("coop_id");
+                entity.Property(e => e.Id).HasColumnName("coop_id");
 
                 entity.Property(e => e.BasketId).HasColumnName("basket_id");
 
@@ -167,7 +170,7 @@ namespace Koop.Models
                     .IsUnicode(false)
                     .HasColumnName("last_name");
 
-                entity.Property(e => e.Phone)
+                entity.Property(e => e.PhoneNumber)
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("phone");
@@ -182,7 +185,7 @@ namespace Koop.Models
                     .HasForeignKey(d => d.FundId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_cooperators_fund_id");
-            });
+            });*/
 
             modelBuilder.Entity<Favority>(entity =>
             {

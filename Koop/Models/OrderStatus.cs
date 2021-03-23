@@ -12,7 +12,7 @@ namespace Koop.Models
             OrderedItems = new HashSet<OrderedItem>();
         }
 
-        public long OrderStatusId { get; set; }
+        public Guid OrderStatusId { get; set; }
         public string OrderStatusName { get; set; }
 
         public virtual ICollection<OrderedItem> OrderedItems { get; set; }

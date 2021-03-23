@@ -9,12 +9,12 @@ namespace Koop.Models
     {
         public Function()
         {
-            Cooperators = new HashSet<Cooperator>();
+            Cooperators = new HashSet<User>();
         }
 
-        public long FunctionId { get; set; }
+        public Guid FunctionId { get; set; }
         public string FunctionName { get; set; }
 
-        public virtual ICollection<Cooperator> Cooperators { get; set; }
+        public virtual ICollection<User> Cooperators { get; set; }
     }
 }

@@ -7,9 +7,9 @@ namespace Koop.Models
 {
     public partial class Basket
     {
-        public long BasketId { get; set; }
-        public long? CoopId { get; set; }
+        public Guid BasketId { get; set; }
+        public Guid? CoopId { get; set; }
 
-        public virtual Cooperator Coop { get; set; }
+        public virtual User Coop { get; set; }
     }
 }

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 
 #nullable disable
 
 namespace Koop.Models
 {
-    public partial class Cooperator
+    public partial class User : IdentityUser<Guid>
     {
-        public Cooperator()
+        public User()
         {
             Baskets = new HashSet<Basket>();
             Favorities = new HashSet<Favority>();
@@ -16,15 +17,12 @@ namespace Koop.Models
             Works = new HashSet<Work>();
         }
 
-        public long CoopId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
         public string Info { get; set; }
         public double? Debt { get; set; }
-        public long FundId { get; set; }
-        public long? FunctionId { get; set; }
+        public Guid? FundId { get; set; }
+        public Guid? FunctionId { get; set; }
         public byte? BasketId { get; set; }
 
         public virtual Function Function { get; set; }
