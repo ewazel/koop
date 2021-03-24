@@ -76,6 +76,15 @@ INSERT INTO "AspNetUserRoles" ("UserId", "RoleId") VALUES ('586cb24d-108d-4b5e-b
 INSERT INTO "AspNetUserRoles" ("UserId", "RoleId") VALUES ('1d05af00-be78-49c3-8657-08f620e1171e', '38b7608a-a5ad-4e0a-810c-534f3ffc8bec');
 INSERT INTO "AspNetUserRoles" ("UserId", "RoleId") VALUES ('0724569d-e16b-4ff2-a357-fcac5f87eb74', '3749bd0e-b424-4180-a6f1-19a723d98568');
 INSERT INTO "AspNetUserRoles" ("UserId", "RoleId") VALUES ('0603d379-7991-49f2-8c3b-8bbc085b5a4c', '3749bd0e-b424-4180-a6f1-19a723d98568');
+INSERT INTO "AspNetUserRoles" ("UserId", "RoleId") VALUES ('a878f085-0b77-4132-bb48-ae2b3a5f296c', '117cf1f0-716c-465b-9169-bc4e31e14ee6');
+INSERT INTO "AspNetUserRoles" ("UserId", "RoleId") VALUES ('d4d9aad8-ef21-44b1-9c47-42b2ef660c37', '117cf1f0-716c-465b-9169-bc4e31e14ee6');
+INSERT INTO "AspNetUserRoles" ("UserId", "RoleId") VALUES ('56f90eab-e0f7-44ee-b978-4e96ce6518be', '117cf1f0-716c-465b-9169-bc4e31e14ee6');
+INSERT INTO "AspNetUserRoles" ("UserId", "RoleId") VALUES ('9853b222-449d-4dfd-ab1a-a76a9c9b6283', '117cf1f0-716c-465b-9169-bc4e31e14ee6');
+INSERT INTO "AspNetUserRoles" ("UserId", "RoleId") VALUES ('bc4f8369-6ad4-47e3-97c6-3f1e1b68060b', '117cf1f0-716c-465b-9169-bc4e31e14ee6');
+INSERT INTO "AspNetUserRoles" ("UserId", "RoleId") VALUES ('0fe8d4ce-9e2b-4ca6-9a24-698a8f3e80d4', '117cf1f0-716c-465b-9169-bc4e31e14ee6');
+INSERT INTO "AspNetUserRoles" ("UserId", "RoleId") VALUES ('5697471c-dfc0-4891-87e8-c2680bbba30c', '117cf1f0-716c-465b-9169-bc4e31e14ee6');
+INSERT INTO "AspNetUserRoles" ("UserId", "RoleId") VALUES ('92f36639-f450-445d-9ca1-0cbd710fe301', '117cf1f0-716c-465b-9169-bc4e31e14ee6');
+
 
 INSERT INTO suppliers (supplier_id, supplier_name, supplier_abbr, description, email, phone, picture, order_closing_date, opro_id) VALUES ('00000000-0000-0000-0000-000000000001', N'Chorazy', N'CHOR', N'Best vegetables', N'chor@chor.pl', N'48235125694', null, null, '6e28cee8-3ca6-4623-9608-986d13a7d06a');
 INSERT INTO suppliers (supplier_id, supplier_name, supplier_abbr, description, email, phone, picture, order_closing_date, opro_id) VALUES ('00000000-0000-0000-0000-000000000002', N'Gustaw', N'GUMI', N'Sweets without sugar', N'gumi@gumi.pl', N'48562145896', null, cast('2021-03-24' as timestamp), '586cb24d-108d-4b5e-b4a2-f57ec1c4afb1');

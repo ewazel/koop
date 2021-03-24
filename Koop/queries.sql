@@ -18,7 +18,7 @@ from "AspNetUsers" as u
 where order_id = '00000000-0000-0000-0000-000000000001' and u."Id" = '0fe8d4ce-9e2b-4ca6-9a24-698a8f3e80d4';
 
 -- cooperator
-select "FirstName", "LastName", "Email", "PhoneNumber", "Name"
+select u."Id", "FirstName", "LastName", "Email", "PhoneNumber", "Name"
 from "AspNetUsers" as u
     left join "AspNetUserRoles" ANUR on u."Id" = ANUR."UserId"
     left join "AspNetRoles" ANR on ANUR."RoleId" = ANR."Id"
