@@ -24,7 +24,6 @@ namespace Koop.Models
         public virtual DbSet<CoopOrderHistoryView> CoopOrderHistoryViews { get; set; }
         //public virtual DbSet<User> Cooperators { get; set; }
         public virtual DbSet<Favority> Favorities { get; set; }
-        public virtual DbSet<Function> Functions { get; set; }
         public virtual DbSet<Fund> Funds { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderStatus> OrderStatuses { get; set; }
@@ -75,6 +74,11 @@ namespace Koop.Models
                 entity.Property(e => e.BasketId).HasColumnName("basket_id");
 
                 entity.Property(e => e.CoopId).HasColumnName("coop_id");
+                entity.Property(e => e.BasketName)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("basket_name");
 
                 entity.HasOne(d => d.Coop)
                     .WithMany(p => p.Baskets)
@@ -211,19 +215,6 @@ namespace Koop.Models
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_favorities_product_id");
-            });
-
-            modelBuilder.Entity<Function>(entity =>
-            {
-                entity.ToTable("functions");
-
-                entity.Property(e => e.FunctionId).HasColumnName("function_id");
-
-                entity.Property(e => e.FunctionName)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("function_name");
             });
 
             modelBuilder.Entity<Fund>(entity =>

@@ -11,7 +11,7 @@ namespace Koop.Models
         public DateTime WorkDate { get; set; }
         public double Duration { get; set; }
         public Guid CoopId { get; set; }
-        public long WorkTypeId { get; set; }
+        public Guid WorkTypeId { get; set; }
 
         public virtual User Coop { get; set; }
         public virtual WorkType WorkType { get; set; }

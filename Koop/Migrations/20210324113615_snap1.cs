@@ -35,18 +35,6 @@ namespace Koop.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "functions",
-                columns: table => new
-                {
-                    function_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    function_name = table.Column<string>(type: "character varying(100)", unicode: false, maxLength: 100, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_functions", x => x.function_id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "funds",
                 columns: table => new
                 {
@@ -99,8 +87,7 @@ namespace Koop.Migrations
                 name: "work_types",
                 columns: table => new
                 {
-                    work_type_id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    work_type_id = table.Column<Guid>(type: "uuid", nullable: false),
                     work_type = table.Column<string>(type: "character varying(200)", unicode: false, maxLength: 200, nullable: false)
                 },
                 constraints: table =>
@@ -138,9 +125,8 @@ namespace Koop.Migrations
                     LastName = table.Column<string>(type: "text", nullable: true),
                     Info = table.Column<string>(type: "text", nullable: true),
                     Debt = table.Column<double>(type: "double precision", nullable: true),
-                    FundId = table.Column<Guid>(type: "uuid", nullable: false),
-                    FunctionId = table.Column<Guid>(type: "uuid", nullable: true),
-                    BasketId = table.Column<byte>(type: "smallint", nullable: true),
+                    FundId = table.Column<Guid>(type: "uuid", nullable: true),
+                    BasketId = table.Column<Guid>(type: "uuid", nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -160,17 +146,11 @@ namespace Koop.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_functions_FunctionId",
-                        column: x => x.FunctionId,
-                        principalTable: "functions",
-                        principalColumn: "function_id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_AspNetUsers_funds_FundId",
                         column: x => x.FundId,
                         principalTable: "funds",
                         principalColumn: "fund_id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -263,7 +243,8 @@ namespace Koop.Migrations
                 columns: table => new
                 {
                     basket_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    coop_id = table.Column<Guid>(type: "uuid", nullable: true)
+                    coop_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    basket_name = table.Column<string>(type: "character varying(100)", unicode: false, maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -309,7 +290,7 @@ namespace Koop.Migrations
                     work_date = table.Column<DateTime>(type: "timestamp", nullable: false),
                     duration = table.Column<double>(type: "double precision", nullable: false),
                     coop_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    work_type_id = table.Column<long>(type: "bigint", nullable: false)
+                    work_type_id = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -504,11 +485,6 @@ namespace Koop.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_FunctionId",
-                table: "AspNetUsers",
-                column: "FunctionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_FundId",
                 table: "AspNetUsers",
                 column: "FundId");
@@ -656,9 +632,6 @@ namespace Koop.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "functions");
 
             migrationBuilder.DropTable(
                 name: "funds");

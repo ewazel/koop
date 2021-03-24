@@ -62,7 +62,7 @@ namespace Koop.Services
 
             return null;
         }
-
+        
         public Task<IdentityResult> CreateRole(string roleName)
         {
             var newRole = new Role() {Name = roleName};

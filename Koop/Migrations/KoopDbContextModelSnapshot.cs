@@ -49,6 +49,13 @@ namespace Koop.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("basket_id");
 
+                    b.Property<string>("BasketName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("basket_name");
+
                     b.Property<Guid?>("CoopId")
                         .HasColumnType("uuid")
                         .HasColumnName("coop_id");
@@ -142,25 +149,6 @@ namespace Koop.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("favorities");
-                });
-
-            modelBuilder.Entity("Koop.Models.Function", b =>
-                {
-                    b.Property<Guid>("FunctionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("function_id");
-
-                    b.Property<string>("FunctionName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("character varying(100)")
-                        .HasColumnName("function_name");
-
-                    b.HasKey("FunctionId");
-
-                    b.ToTable("functions");
                 });
 
             modelBuilder.Entity("Koop.Models.Fund", b =>
@@ -465,8 +453,8 @@ namespace Koop.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
-                    b.Property<byte?>("BasketId")
-                        .HasColumnType("smallint");
+                    b.Property<Guid?>("BasketId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -484,9 +472,6 @@ namespace Koop.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("text");
-
-                    b.Property<Guid?>("FunctionId")
-                        .HasColumnType("uuid");
 
                     b.Property<Guid?>("FundId")
                         .HasColumnType("uuid");
@@ -532,8 +517,6 @@ namespace Koop.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FunctionId");
-
                     b.HasIndex("FundId");
 
                     b.HasIndex("NormalizedEmail")
@@ -565,8 +548,8 @@ namespace Koop.Migrations
                         .HasColumnType("timestamp")
                         .HasColumnName("work_date");
 
-                    b.Property<long>("WorkTypeId")
-                        .HasColumnType("bigint")
+                    b.Property<Guid>("WorkTypeId")
+                        .HasColumnType("uuid")
                         .HasColumnName("work_type_id");
 
                     b.HasKey("WorkId");
@@ -580,11 +563,10 @@ namespace Koop.Migrations
 
             modelBuilder.Entity("Koop.Models.WorkType", b =>
                 {
-                    b.Property<long>("WorkTypeId")
+                    b.Property<Guid>("WorkTypeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("work_type_id")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("uuid")
+                        .HasColumnName("work_type_id");
 
                     b.Property<string>("WorkType1")
                         .IsRequired()
@@ -826,15 +808,9 @@ namespace Koop.Migrations
 
             modelBuilder.Entity("Koop.Models.User", b =>
                 {
-                    b.HasOne("Koop.Models.Function", "Function")
-                        .WithMany("Cooperators")
-                        .HasForeignKey("FunctionId");
-
                     b.HasOne("Koop.Models.Fund", "Fund")
                         .WithMany("Cooperators")
                         .HasForeignKey("FundId");
-
-                    b.Navigation("Function");
 
                     b.Navigation("Fund");
                 });
@@ -912,11 +888,6 @@ namespace Koop.Migrations
             modelBuilder.Entity("Koop.Models.Category", b =>
                 {
                     b.Navigation("ProductCategories");
-                });
-
-            modelBuilder.Entity("Koop.Models.Function", b =>
-                {
-                    b.Navigation("Cooperators");
                 });
 
             modelBuilder.Entity("Koop.Models.Fund", b =>

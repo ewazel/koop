@@ -9,6 +9,7 @@ namespace Koop.Models
     {
         public Guid BasketId { get; set; }
         public Guid? CoopId { get; set; }
+        public string BasketName { get; set; }
 
         public virtual User Coop { get; set; }
     }

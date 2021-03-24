@@ -59,10 +59,10 @@ namespace Koop.Controllers
             return Problem(roleResult.Errors.First().Description, null, 500);
         }
 
-        [HttpPost("user/{id}")]
-        public async Task<IActionResult> AddUserToRole(Guid id, [FromBody] string roleName)
+        [HttpPost("user/addrole")]
+        public async Task<IActionResult> AddUserToRole(UserAddRole userAddRole)
         {
-            var result = await _authService.AddUserToRole(id, roleName);
+            var result = await _authService.AddUserToRole(userAddRole.Id, userAddRole.RoleName);
             
             if (result.Succeeded)
             {

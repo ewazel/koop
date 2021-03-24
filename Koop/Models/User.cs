@@ -22,10 +22,8 @@ namespace Koop.Models
         public string Info { get; set; }
         public double? Debt { get; set; }
         public Guid? FundId { get; set; }
-        public Guid? FunctionId { get; set; }
-        public byte? BasketId { get; set; }
-
-        public virtual Function Function { get; set; }
+        public Guid? BasketId { get; set; }
+        
         public virtual Fund Fund { get; set; }
         public virtual ICollection<Basket> Baskets { get; set; }
         public virtual ICollection<Favority> Favorities { get; set; }
