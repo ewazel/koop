@@ -8,36 +8,36 @@ order by s.supplier_abbr;
 
 -- cooperator's order
 -- order_id corresponds to the week's order
-select first_name, last_name, product_name, aq.quantity, unit_name, oi.quantity, order_status_name
-from cooperators as co
-         left join ordered_items oi on co.coop_id = oi.coop_id
-         left join order_status os on oi.order_status_id = os.order_status_id
-         left join products p on oi.product_id = p.product_id
-         left join units u on p.unit_id = u.unit_id
-         left join available_quantities aq on p.product_id = aq.product_id
-where order_id = 1 and co.coop_id = 6;
+select "FirstName", "LastName", product_name, aq.quantity, unit_name, oi.quantity, order_status_name
+from "AspNetUsers" as u
+    left join ordered_items oi on u."Id" = oi.coop_id
+    left join order_status os on oi.order_status_id = os.order_status_id
+    left join products p on oi.product_id = p.product_id
+    left join units u2 on p.unit_id = u2.unit_id
+    left join available_quantities aq on p.product_id = aq.product_id
+where order_id = '00000000-0000-0000-0000-000000000001' and u."Id" = '0fe8d4ce-9e2b-4ca6-9a24-698a8f3e80d4';
 
 -- cooperator
-select first_name, last_name, email, phone, function_name, value
-from cooperators as co
-         inner join functions f on f.function_id = co.function_id
-         inner join funds f2 on co.fund_id = f2.fund_id
-order by function_name;
+select "FirstName", "LastName", "Email", "PhoneNumber", "Name"
+from "AspNetUsers" as u
+    left join "AspNetUserRoles" ANUR on u."Id" = ANUR."UserId"
+    left join "AspNetRoles" ANR on ANUR."RoleId" = ANR."Id"
+order by "Name";
 
 -- products
 select distinct pc.product_id,
     product_name,
     amount_in_magazine,
     amount_max,
-    (select category_name + ','
+    (select string_agg(ca.category_name, ',') categories
         from categories as ca
             inner join product_categories p on ca.category_id = p.category_id
-        where p.product_id = pc.product_id
-        for XML PATH('')) as categories,
-    (select cast(quantity as varchar(10)) + ','
+            where p.product_id = pc.product_id
+        group by p.product_id) as categories,
+    (select string_agg(cast(quantity as varchar(10)), ',') avail_quantities
         from available_quantities as ava
-        where ava.product_id = pc.product_id
-        for XML PATH('')) as avail_quantities,
+            where ava.product_id = pc.product_id
+        group by ava.product_id) as avail_quantities,
     unit_name,
     cast(price as decimal(10, 2)) as price,
     supplier_abbr,
