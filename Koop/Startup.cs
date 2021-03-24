@@ -7,6 +7,7 @@ using Koop.Extensions;
 using Koop.Mapper;
 using Koop.Models;
 using Koop.Models.Auth;
+using Koop.Models.Repositories;
 using Koop.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +45,7 @@ namespace Koop
                 .AddDefaultTokenProviders();
 
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IGenericUnitOfWork, GenericUnitOfWork>();
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
