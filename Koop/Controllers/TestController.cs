@@ -28,7 +28,7 @@ namespace Koop.Controllers
 
         public IActionResult Data()
         {
-            return Ok(_uow.Repository<Fund>().GetAll());
+            return Ok(_uow.Repository<SupplierInfoView>().GetAll());
         }
     }
 }

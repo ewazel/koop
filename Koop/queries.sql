@@ -60,9 +60,10 @@ where c.coop_id = 1
 group by first_name, last_name, c.coop_id, order_stop_date, order_status_name;
 
 -- suppliers
-select supplier_name, supplier_abbr, s.email, s.phone, order_closing_date, (first_name + ' ' + last_name) as OpRo
+create or replace view supplier_info_view as
+select supplier_name, supplier_abbr, s.email, s.phone, order_closing_date, concat(c."FirstName", ' ', c."LastName") as OpRo 
 from suppliers as s
-     inner join cooperators c on s.opro_id = c.coop_id;
+     inner join "AspNetUsers" c on s.opro_id = c."Id";
 
 -- orders/baskets
 select first_name, last_name, basket_id
