@@ -34,6 +34,7 @@ namespace Koop.Models
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<Work> Works { get; set; }
         public virtual DbSet<WorkType> WorkTypes { get; set; }
+        public virtual DbSet<SupplierInfoView> SupplierInfoViews { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -474,6 +475,33 @@ namespace Koop.Models
                     .HasMaxLength(200)
                     .IsUnicode(false)
                     .HasColumnName("work_type");
+            });
+            
+            modelBuilder.Entity<SupplierInfoView>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("supplier_info_view");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(30)
+                    .HasColumnName("email");
+
+                entity.Property(e => e.Opro).HasColumnName("opro");
+
+                entity.Property(e => e.OrderClosingDate).HasColumnName("order_closing_date");
+
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(20)
+                    .HasColumnName("phone");
+
+                entity.Property(e => e.SupplierAbbr)
+                    .HasMaxLength(20)
+                    .HasColumnName("supplier_abbr");
+
+                entity.Property(e => e.SupplierName)
+                    .HasMaxLength(100)
+                    .HasColumnName("supplier_name");
             });
 
             OnModelCreatingPartial(modelBuilder);
