@@ -31,25 +31,27 @@ namespace Koop.Controllers
 
         public IActionResult Data()
         {
-            return Ok(_uow.Repository<SupplierView>().GetAll());
+            return Ok(_uow.Repository<Supplier>().GetAll());
         }
         
         [HttpGet("supplier/{abbr}")]
         public IActionResult Supplier(string abbr)
         {
-            return Ok(_uow.Repository<SupplierView>().GetAll().SingleOrDefault(s => s.SupplierAbbr.ToLower() == abbr));
+            return Ok(_uow.Repository<Supplier>().GetAll().SingleOrDefault(s => s.SupplierAbbr.ToLower() == abbr));
+            // return _uow.Repository<Supplier>().GetAll().Include(p => p.Products)
+            //     .SingleOrDefaultAsync(p => p.SupplierAbbr == "CHOR");
         }
-        
+
         [HttpGet("supplier/{abbr}/edit")]
         public IActionResult EditSupplier(string abbr)
         {
-            return Ok(_uow.Repository<SupplierView>().GetAll().SingleOrDefault(s => s.SupplierAbbr.ToLower() == abbr));
+            return Ok(_uow.Repository<Supplier>().GetAll().SingleOrDefault(s => s.SupplierAbbr.ToLower() == abbr));
         }
 
         [HttpGet("allsuppliers")]
         public IActionResult AllSuppliers()
         {
-            return Ok(_uow.Repository<SupplierView>().GetAll());
+            return Ok(_uow.Repository<Supplier>().GetAll());
         }
         
         [HttpGet("cooperator/{firstname}+{lastname}/history")]
@@ -58,10 +60,10 @@ namespace Koop.Controllers
             return Ok(_uow.Repository<CoOrderHistoryView>().GetAll().Where(s=>s.FirstName.ToLower() == firstName && s.LastName.ToLower() == lastName));
         }
         
-        [HttpGet("order/basketname")]
+        [HttpGet("order/baskets")]
         public IActionResult BasketName()
         {
-            return Ok(_uow.Repository<BasketNameView>().GetAll());
+            return Ok(_uow.Repository<Basket>().GetAll());
         }
         
         

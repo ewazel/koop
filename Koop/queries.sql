@@ -60,11 +60,11 @@ from "AspNetUsers" as u
 group by u."Id", "FirstName", "LastName", oi.order_id, order_stop_date, order_status_name
 order by u."Id";
 
--- supplier (ewa)
-create or replace view supplier_view as
-select s.supplier_id, supplier_name, supplier_abbr, s.description, s.email, s.phone, s.picture, order_closing_date, s.opro_id, concat(c."FirstName", ' ', c."LastName") as OpRo 
-from suppliers as s
-     inner join "AspNetUsers" c on s.opro_id = c."Id";
+-- -- supplier (ewa)
+-- create or replace view supplier_view as
+-- select s.supplier_id, supplier_name, supplier_abbr, s.description, s.email, s.phone, s.picture, order_closing_date, s.opro_id, concat(c."FirstName", ' ', c."LastName") as OpRo 
+-- from suppliers as s
+--      inner join "AspNetUsers" c on s.opro_id = c."Id";
 
 -- order grande history (ewa)
 create or replace view order_grande_history_view as
@@ -72,12 +72,12 @@ select o.order_id, order_start_date, order_stop_date
 from orders as o
         left join order_status os on oi.order_status_id = os.order_status_id
 ;
-
--- order basket & name (ewa)
-create or replace view basket_name_view as
-select b.basket_name, concat(u."FirstName", ' ', u."LastName") as Cooperator
-from baskets as b
-    inner join "AspNetUsers" as u on b.coop_id = u."Id";
+-- 
+-- -- order basket & name (ewa)
+-- create or replace view basket_name_view as
+-- select b.basket_name, concat(u."FirstName", ' ', u."LastName") as Cooperator
+-- from baskets as b
+--     inner join "AspNetUsers" as u on b.coop_id = u."Id";
 
 
 -- orders/baskets

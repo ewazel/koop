@@ -34,9 +34,7 @@ namespace Koop.Models
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<Work> Works { get; set; }
         public virtual DbSet<WorkType> WorkTypes { get; set; }
-        public virtual DbSet<SupplierView> SupplierView { get; set; }
         public virtual DbSet<CoOrderHistoryView> CoOrderHistoryView { get; set; }
-        public virtual DbSet<BasketNameView> BasketNameView { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -478,42 +476,7 @@ namespace Koop.Models
                     .IsUnicode(false)
                     .HasColumnName("work_type");
             });
-            
-            modelBuilder.Entity<SupplierView>(entity =>
-            {
-                entity.HasNoKey();
 
-                entity.ToTable("supplier_view");
-
-                entity.Property(e => e.Description).HasColumnName("description");
-
-                entity.Property(e => e.Email)
-                    .HasMaxLength(30)
-                    .HasColumnName("email");
-
-                entity.Property(e => e.Opro).HasColumnName("opro");
-
-                entity.Property(e => e.OproId).HasColumnName("opro_id");
-
-                entity.Property(e => e.OrderClosingDate).HasColumnName("order_closing_date");
-
-                entity.Property(e => e.Phone)
-                    .HasMaxLength(20)
-                    .HasColumnName("phone");
-
-                entity.Property(e => e.Picture).HasColumnName("picture");
-
-                entity.Property(e => e.SupplierAbbr)
-                    .HasMaxLength(20)
-                    .HasColumnName("supplier_abbr");
-
-                entity.Property(e => e.SupplierId).HasColumnName("supplier_id");
-
-                entity.Property(e => e.SupplierName)
-                    .HasMaxLength(100)
-                    .HasColumnName("supplier_name");
-            });
-            
             modelBuilder.Entity<CoOrderHistoryView>(entity =>
             {
                 entity.HasNoKey();
@@ -531,18 +494,6 @@ namespace Koop.Models
                 entity.Property(e => e.Price).HasColumnName("price");
             });
             
-            modelBuilder.Entity<BasketNameView>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("basket_name_view");
-
-                entity.Property(e => e.BasketName)
-                    .HasMaxLength(100)
-                    .HasColumnName("basket_name");
-                
-                entity.Property(e => e.Cooperator).HasColumnName("cooperator");
-            });
 
             OnModelCreatingPartial(modelBuilder);
         }
